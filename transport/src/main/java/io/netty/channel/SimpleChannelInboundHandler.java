@@ -95,7 +95,7 @@ public abstract class SimpleChannelInboundHandler<I> extends ChannelInboundHandl
         return matcher.match(msg);
     }
 
-    //todo 看看为什么
+    //todo 如果不需要把收到的数据再发出去，可以用这个。这个读完数据就会丢掉。
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         boolean release = true;
