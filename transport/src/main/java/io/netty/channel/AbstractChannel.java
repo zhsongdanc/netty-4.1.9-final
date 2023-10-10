@@ -214,6 +214,7 @@ public abstract class AbstractChannel extends DefaultAttributeMap implements Cha
         return pipeline.bind(localAddress);
     }
 
+    //todo 这里如果是网络连接IO请求，不应该是主reactor交给从reactor，关注读写事件吗？为什么是下面这样
     @Override
     public ChannelFuture connect(SocketAddress remoteAddress) {
         return pipeline.connect(remoteAddress);

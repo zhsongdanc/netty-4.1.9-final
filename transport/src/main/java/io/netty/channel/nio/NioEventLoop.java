@@ -387,6 +387,7 @@ public final class NioEventLoop extends SingleThreadEventLoop {
                     case SelectStrategy.SELECT:
                         select(wakenUp.getAndSet(false));
 
+                        // todo 下面讲的什么？
                         // 'wakenUp.compareAndSet(false, true)' is always evaluated
                         // before calling 'selector.wakeup()' to reduce the wake-up
                         // overhead. (Selector.wakeup() is an expensive operation.)
@@ -523,6 +524,7 @@ public final class NioEventLoop extends SingleThreadEventLoop {
             if (a instanceof AbstractNioChannel) {
                 processSelectedKey(k, (AbstractNioChannel) a);
             } else {
+                // todo 和上面的区别
                 @SuppressWarnings("unchecked")
                 NioTask<SelectableChannel> task = (NioTask<SelectableChannel>) a;
                 processSelectedKey(k, task);
@@ -730,6 +732,7 @@ public final class NioEventLoop extends SingleThreadEventLoop {
                 }
 
                 int selectedKeys = selector.select(timeoutMillis);
+                // todo selectedKeys返回值为0，但没有超时却返回
                 selectCnt ++;
 
                 if (selectedKeys != 0 || oldWakenUp || wakenUp.get() || hasTasks() || hasScheduledTasks()) {

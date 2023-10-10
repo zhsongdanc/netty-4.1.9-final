@@ -95,6 +95,7 @@ public abstract class SimpleChannelInboundHandler<I> extends ChannelInboundHandl
         return matcher.match(msg);
     }
 
+    //todo 看看为什么
     @Override
     public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         boolean release = true;

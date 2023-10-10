@@ -56,6 +56,7 @@ public abstract class AbstractNioChannel extends AbstractChannel {
 
     private final SelectableChannel ch;
     protected final int readInterestOp;
+    // todo 这里的并发问题（如果不会有多个线程写，那么可以这样用）
     volatile SelectionKey selectionKey;
     boolean readPending;
     private final Runnable clearReadPendingRunnable = new Runnable() {
